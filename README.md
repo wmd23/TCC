@@ -3,17 +3,9 @@
 ## Exemplo I (uma restrição) - $min f(x_1,x_2)=-x_1x_2$ sujeito a $x_1+x_2=2$
 
 ```julia
-include("testfunctions.jl"); include("projections.jl")
+include("MetodoNewtonLagrange.jl")
 
-x0 = ones(100) # guess
-F = gradsumsquares # see testfunctions.jl for more details
-proj = projRplus # see projections.jl for more details
 
-x,k,t,nFx,Fevals,error=ding(x0,F,proj, maxiter=1.e4) # see search.jl for more details
-```
-
-#=
-# Exemplo I (uma restrição) - min f(x1,x2)=-x1x2 sujeito a x1+x2=2
 f(x)=-x[1]*x[2]
 h(x)=x[1]+x[2]-2
 gradf(x)=[-x[2]; -x[1]]
@@ -23,8 +15,7 @@ hessh(x)=[0 0; 0 0]; hess_coordenada_h=[hessh] # A função coordenada de uma fu
 x0=1.e3*rand(2); λ0=1.e3*rand() # Determinando o ponto inicial
 
 x_barra1,λ_barra1,k1=metodo_newton_lagrange(h, gradf, Jacobian_h, hessf, hess_coordenada_h, x0, λ0;maxiter=100)
-x_barra2,λ_barra2,k2=metodo_newton_lagrange_num_diff(f, h, hess_coordenada_h, x0, λ0;maxiter=100)
-=#
+```
 
 #=
 #Exemplo II (mais do que uma restrição) - min -x1-2x2-3x3 sujeito a x1-x2+x3=1 e x1^2+x2^2=1
