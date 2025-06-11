@@ -49,6 +49,8 @@ x0=rand(2); λ0=rand() # Determinando o ponto inicial
 x_barra1,λ_barra1,k1=metodo_newton_lagrange(h, gradf, Jacobian_h, hessf, hess_coordenada_h, x0, λ0;maxiter=40000)
 ```
 
+## Exemplo IV - $\min f(x,y,z)=x+2y$ sujeito a $x+y+z=1$ e $y^2+z^2=4$
+
 ```julia
 include("MetodoNewtonLagrange.jl")
 
