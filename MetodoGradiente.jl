@@ -1,6 +1,6 @@
 using LinearAlgebra
 
-include("BuscasLineares.jl") # Inclui o arquivo com as funções de busca linear
+include("BuscaArmijo.jl") # Inclui o arquivo com as funções de busca linear
 
 function metodo_gradiente(x0, f, gradf; ϵ=1.e-6, maxiter=1.e6)
 
