@@ -65,3 +65,32 @@ x0=rand(3); λ0=rand(2)
 
 x_barra1,λ_barra1,k1=metodo_newton_lagrange(h, gradf, Jacobian_h, hessf, hess_coordenada_h, x0, λ0;maxiter=100)
 ```
+# Método de Penalização Quadrática
+
+## Exemplo I (uma restrição) - $\min f(x_1,x_2)=-x_1x_2$ sujeito a $x_1+x_2=2$
+
+```julia
+include("MetodoPenalizacaoQuadratica.jl")
+
+f(x)=-x[1]*x[2]
+h(x)=x[1]+x[2]-2
+gradf(x)=[-x[2]; -x[1]]
+gradh(x)=[1; 1]; Jacobian_h(x)=gradh(x)' # A matriz jacobiana de uma função escalar é gradiente transposto
+x0=1.e3*rand(2) # Determinando o ponto inicial
+
+xk,k = metodo_penalizacao_quadratica(x0,f,h,gradf,Jacobian_h,1; ϵ=1.e6)
+```
+
+## Exemplo II (mais do que uma restrição) - $\min -x_1-2x_2-3x_3$ sujeito a $x_1-x_2+x_3=1$ e $x_1^2+x_2^2=1$
+
+```julia
+include("MetodoPenalizacaoQuadratica.jl")
+
+f(x)=-x[1]-2*x[2]-3*x[3]
+h(x)=[x[1]-x[2]+x[3]-1;x[1]^2+x[2]^2-1]
+gradf(x)=[-1;-2;-3]
+Jacobian_h(x)=[1 -1 1; 2x[1] 2x[2] 0]
+x0=rand(3)
+
+xk,k = metodo_penalizacao_quadratica(x0,f,h,gradf,Jacobian_h,1; ϵ=1.e6)
+```
