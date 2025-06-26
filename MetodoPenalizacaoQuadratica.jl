@@ -1,6 +1,6 @@
 using LinearAlgebra
 
-include("Metodos.jl")
+include("MetodoGradiente.jl")
 
 function metodo_penalizacao_quadratica(y0,f,h,gradf,Jacobian_h,c; ϵ=1.e3) #c deve ser positivo
     
